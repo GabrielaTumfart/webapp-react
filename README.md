@@ -12,6 +12,36 @@ MILESTONE 0
 
 Ragionare e preparare uno schemino per ompostare la struttura del lavoro in maniera da sfruttare la riutailizzabilità dei componenti React e le loro props.
 
+Schemino per impostare la struttura del lavoro
+
+#cartella src
+
+                App.jsx da togliere il default
+
+                App.css da cancellare
+
+                Index.css da cancellare
+
+                main.jsx
+
+#cartella components
+
+                Layout - componente wrapper con navbar e footer
+
+                MovieCard - props: id, title, director, genre, image
+
+                ReviewsCard - props: name, vote, text (riutilizzabili)
+
+#Cartella pages
+
+                HomePage - rircordarmi che sarà riutilizzabile
+
+                MovieDetailPage  - sempre movieCard
+
+
+
+
+
 MILESTONE 1
 
 Mettiamo su un nuovo progetto React aiutandoci con Vite
