@@ -13,16 +13,20 @@ export default function HomePage() {
   return (
     <div>
       <h1>Lista Film</h1>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          director={movie.director}
-          genre={movie.genre}
-          image={movie.image}
-        />
-      ))}
+      <div className="row">
+        {movies.map((movie) => (
+          <div className="col-3" key={movie.id}>
+            <MovieCard
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              director={movie.director}
+              genre={movie.genre}
+              image={movie.image}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
