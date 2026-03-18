@@ -1,9 +1,9 @@
-export default function ReviewCard({ name, vote, text }) {
+export default function ReviewCard({ review }) {
   return (
-    <div>
-      <h3>{name}</h3>
-      <p>{text}</p>
-      <p>{vote}</p>
+    <div className="mb-2 border-bottom">
+      <strong>{review.name}</strong>
+      <p>{review.text}</p>
+      <p>{review.vote}/5</p>
     </div>
   );
 }
