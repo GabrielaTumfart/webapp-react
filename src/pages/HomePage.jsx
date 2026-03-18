@@ -13,10 +13,11 @@ export default function HomePage() {
   return (
     <div>
       <h1>Lista Film</h1>
-      <div className="row row-cols-1 row-cols-md-4 g-4">
+      <div className="row">
         {movies.map((movie) => (
-          <div className="col" key={movie.id}>
+          <div className="col-3" key={movie.id}>
             <MovieCard
+              key={movie.id}
               id={movie.id}
               title={movie.title}
               director={movie.director}
@@ -30,4 +31,4 @@ export default function HomePage() {
   );
 }
 
-// bonus Tiziano film piu votato get best film oppure filtro sulla rotta che ho gia inventare un fare un endpoint col miglior film
+// bonus Tiziano film piu votato get best film oppure filtro sulla rotta che ho gia inventare un fare un edpoint col
