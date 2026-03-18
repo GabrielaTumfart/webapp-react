@@ -25,10 +25,13 @@ export default function HomePage() {
       <h1>Lista Film</h1>
       {bestMovie && (
         <div>
-          🏆 Film più votato: <strong>{bestMovie.title}</strong>{" "}
-          {Math.ceil(bestMovie.avg_vote)}/5
+          <h3>
+            🏆Film più votato: <strong>{bestMovie.title}</strong>{" "}
+            {Math.ceil(bestMovie.avg_vote)}/5🏆
+          </h3>
         </div>
       )}
+
       <div className="row">
         {movies.map((movie) => (
           <div className="col-3" key={movie.id}>
