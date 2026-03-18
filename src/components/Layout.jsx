@@ -1,13 +1,15 @@
 export default function Layout({ children }) {
   return (
     <div>
-      <nav>
-        <a href="/">🎬 WebApp Movies Gabriela</a>
+      <nav className="navbar navbar-dark bg-dark px-4">
+        <a className="navbar-brand" href="/">
+          <i className="bi bi-film"></i>&nbsp; Gabriela's Movies
+        </a>
       </nav>
 
-      <main>{children}</main>
+      <main className="container my-4">{children}</main>
 
-      <footer>
+      <footer className="bg-dark text-white text-center py-3">
         <p>WebApp Movies Gabriela 2026</p>
       </footer>
     </div>
