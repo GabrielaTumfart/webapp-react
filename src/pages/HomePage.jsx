@@ -4,15 +4,31 @@ import MovieCard from "../components/MovieCard";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
+  const [bestMovie, setBestMovie] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:3000/movies").then((response) => {
-      setMovies(response.data.results);
+      const results = response.data.results;
+      setMovies(results);
+
+      let best = results[0];
+      results.forEach((movie) => {
+        if (movie.avg_vote > best.avg_vote) {
+          best = movie;
+        }
+      });
+      setBestMovie(best);
     });
   }, []);
   return (
     <div>
       <h1>Lista Film</h1>
+      {bestMovie && (
+        <div>
+          🏆 Film più votato: <strong>{bestMovie.title}</strong>{" "}
+          {Math.ceil(bestMovie.avg_vote)}/5
+        </div>
+      )}
       <div className="row">
         {movies.map((movie) => (
           <div className="col-3" key={movie.id}>
