@@ -30,3 +30,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+// bonus Tiziano film piu votato get best film oppure filtro sulla rotta che ho gia inventare un fare un endpoint col miglior film
