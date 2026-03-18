@@ -13,11 +13,10 @@ export default function HomePage() {
   return (
     <div>
       <h1>Lista Film</h1>
-      <div className="row">
+      <div className="row row-cols-1 row-cols-md-4 g-4">
         {movies.map((movie) => (
-          <div className="col-3" key={movie.id}>
+          <div className="col" key={movie.id}>
             <MovieCard
-              key={movie.id}
               id={movie.id}
               title={movie.title}
               director={movie.director}
