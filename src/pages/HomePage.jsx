@@ -1,24 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
+import { useLoaderContext } from "../contexts/LoaderContext";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [bestMovie, setBestMovie] = useState(null);
+  const { startLoading, endLoading } = useLoaderContext();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/movies").then((response) => {
-      const results = response.data.results;
-      setMovies(results);
+    startLoading();
+    axios
+      .get("http://localhost:3000/movies")
+      .then((response) => {
+        const results = response.data.results;
+        setMovies(results);
 
-      let best = results[0];
-      results.forEach((movie) => {
-        if (movie.avg_vote > best.avg_vote) {
-          best = movie;
-        }
+        let best = results[0];
+        results.forEach((movie) => {
+          if (movie.avg_vote > best.avg_vote) {
+            best = movie;
+          }
+        });
+        setBestMovie(best);
+      })
+      .finally(() => {
+        endLoading();
       });
-      setBestMovie(best);
-    });
   }, []);
   return (
     <div>
