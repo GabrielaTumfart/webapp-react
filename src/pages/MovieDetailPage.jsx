@@ -4,29 +4,41 @@ import axios from "axios";
 import ReviewCard from "../components/ReviewCard";
 import Rating from "../components/Rating";
 import ReviewForm from "../components/ReviewForm";
+import { useLoaderContext } from "../contexts/LoaderContext";
 
 export default function MovieDetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+
+  // prendo startLoading e endLoading dal context
+  const { startLoading, endLoading } = useLoaderContext();
 
   useEffect(() => {
     fetchMovie();
   }, []);
 
   function fetchMovie() {
-    axios.get(`http://localhost:3000/movies/${id}`).then((response) => {
-      const movie = response.data.result;
+    // avvio il loader
+    startLoading();
+    axios
+      .get(`http://localhost:3000/movies/${id}`)
+      .then((response) => {
+        const movie = response.data.result;
 
-      let voteSum = 0;
-      movie.reviews.forEach((review) => {
-        voteSum += review.vote;
+        let voteSum = 0;
+        movie.reviews.forEach((review) => {
+          voteSum += review.vote;
+        });
+
+        const averageVote = Math.ceil(voteSum / movie.reviews.length);
+        movie.average_vote = averageVote;
+
+        setMovie(movie);
+      })
+      .finally(() => {
+        // fermo il loader
+        endLoading();
       });
-
-      const averageVote = Math.ceil(voteSum / movie.reviews.length);
-      movie.average_vote = averageVote;
-
-      setMovie(movie);
-    });
   }
 
   if (!movie) return <h1>Caricamento...</h1>;
